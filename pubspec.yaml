@@ -1,0 +1,21 @@
+name: example_nav2
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=2.19.2 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  # get: ^4.1.4
+  get: 5.0.0-release-candidate-5
+  flutter:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
