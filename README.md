@@ -1,6 +1,10 @@
 # example_nav2
 
-A new Flutter project.
+A new Flutter project use Nav2.0 with nested routing.
+
+## Enhancements
+
+Maintain and retain the state of historical pages, including nested tabs pages
 
 ## Getting Started
 

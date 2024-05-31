@@ -8,11 +8,36 @@ class SettingsView extends GetView<SettingsController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+        centerTitle: true,
+      ),
       body: Center(
-        child: Text(
-          'SettingsView is working',
-          style: TextStyle(fontSize: 20),
+        child: Column(
+          children: [
+            const Text(
+              'SettingsView is working',
+              style: TextStyle(fontSize: 20),
+            ),
+            Container(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                controller.increment();
+              },
+              child: Obx(() => Text('clicked ${controller.count} times')),
+            ),
+            Container(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/home/dashboard');
+              },
+              child: const Text('go Dashboard'),
+            ),
+            Container(height: 3),
+            const Text(
+                'Try backing to settings page from dashboard, clicked count will be preserved.'),
+          ],
         ),
       ),
     );

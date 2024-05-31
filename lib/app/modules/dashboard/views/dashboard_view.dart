@@ -18,7 +18,15 @@ class DashboardView extends GetView<DashboardController> {
                 'DashboardView is working',
                 style: TextStyle(fontSize: 20),
               ),
-              Text('Time: ${controller.now.value.toString()}'),
+              Text('Current Time: ${controller.now.value.toString()}'),
+              Text('Page Life: ${controller.sec} seconds'),
+              Container(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  Get.toNamed('/settings');
+                },
+                child: const Text('go Settings'),
+              ),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:example_nav2/app/modules/root/views/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,9 +22,43 @@ class HomeView extends GetView<HomeController> {
             route: Routes.home,
             builder: (context) {
               return Scaffold(
+                drawer: const DrawerWidget(),
+                appBar: AppBar(
+                  title: Text(context.location),
+                  centerTitle: true,
+                ),
                 body: GetRouterOutlet(
                   initialRoute: Routes.dashboard,
                   anchorRoute: Routes.home,
+                  filterPages: (pages) {
+                    var ret = pages.toList();
+                    final nav = Get.nestedKey(Routes.home)
+                        ?.navigatorKey
+                        .currentState
+                        ?.widget;
+                    Get.log('Home filter pages: ${pages.map((e) => e.name)}');
+
+                    if (nav != null) {
+                      if (ret.isEmpty) {
+                        Get.log(
+                            "Home use olds: ${nav.pages.map((e) => e.name)}");
+                        return nav.pages as List<GetPage>;
+                      }
+                      final sn = ret[0].name.split('/').length;
+                      for (var p in nav.pages as List<GetPage>) {
+                        if (p.maintainState &&
+                            p.name.split('/').length == sn &&
+                            !ret.contains(p)) {
+                          ret.insert(0, p);
+                        }
+                      }
+                    }
+                    ret = ret
+                        .where((e) => e.participatesInRootNavigator != true)
+                        .toList();
+                    Get.log('Home real pages: ${ret.map((e) => e.name)}');
+                    return ret;
+                  },
                 ),
                 bottomNavigationBar: IndexedRouteBuilder(
                     routes: const [

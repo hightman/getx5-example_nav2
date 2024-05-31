@@ -9,6 +9,10 @@ class ProductDetailsView extends GetWidget<ProductDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('ProductId: ${controller.productId}'),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
