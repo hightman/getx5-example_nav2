@@ -32,6 +32,10 @@ class HomeView extends GetView<HomeController> {
                   anchorRoute: Routes.home,
                   filterPages: (pages) {
                     var ret = pages.toList();
+                    if (ret.isEmpty) {
+                      ret.add(
+                          context.delegate.matchRoute(Routes.dashboard).route!);
+                    }
                     final nav = Get.nestedKey(Routes.home)
                         ?.navigatorKey
                         .currentState
