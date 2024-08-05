@@ -32,7 +32,7 @@ class HomeView extends GetView<HomeController> {
                   anchorRoute: Routes.home,
                   filterPages: (pages) {
                     var ret = pages.toList();
-                    if (ret.isEmpty) {
+                    if (ret.isEmpty && ModalRoute.of(context)!.isCurrent) {
                       ret.add(
                           context.delegate.matchRoute(Routes.dashboard).route!);
                     }
