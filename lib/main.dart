@@ -14,6 +14,10 @@ void main() {
       getPages: AppPages.routes,
       // initialRoute: AppPages.initial,
       routerDelegate: _createDelegate(),
+      onInit: () {
+        final delegate = Get.rootController.rootDelegate;
+        delegate.navigatorObservers?.add(GetObserver(null, Get.routing));
+      },
 
       // builder: (context, child) {
       //   return FutureBuilder<void>(
@@ -43,7 +47,7 @@ GetDelegate _createDelegate() {
   return GetDelegate(
     pages: AppPages.routes,
     navigatorObservers: <NavigatorObserver>[
-      GetObserver(null, Routing()),
+      //GetObserver(null, Routing()),
     ],
     pickPagesForRootNavigator: (currentNavStack) {
       final actives = Get.rootController.rootDelegate.activePages;
